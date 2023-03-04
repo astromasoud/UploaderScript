@@ -1,0 +1,10 @@
+[Unit]
+Description=Upload Script Timer
+Requires=upscript.service
+
+[Timer]
+OnUnitInactiveSec=26m
+OnBootSec=33m
+
+[Install]
+WantedBy=timers.target

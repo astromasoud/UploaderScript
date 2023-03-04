@@ -1,0 +1,15 @@
+[Unit]
+Description=Upload Script Job
+Wants=upscript.timer
+
+[Service]
+Environment="PATH=/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
+Type=oneshot
+User=username
+Group=usergroup
+ExecStart=bash /opt/script/script.sh
+StandardOutput=file:/opt/script/logs/script.log
+StandardError=file:/opt/script/logs/script-error.log
+
+[Install]
+WantedBy=multi-user.target
