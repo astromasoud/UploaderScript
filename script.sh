@@ -1,7 +1,7 @@
 #!/bin/bash
 
 UpFileName=upfile.iso
-UpFileSize=1800M
+UpFileSize=$(( ( RANDOM % 1000 ) +500 ))M
 LogDir=/opt/script/logs
 LogFile=script-$(date +%s).log
 

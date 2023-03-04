@@ -51,12 +51,12 @@ Then go back to the amin server, create a directory somewhere for the script fil
 /opt/script/logs/
 ```
 
-This script automatically creates a file of the defined size `UpFileSize`, or you could download a relatively large file yourself, like Ubuntu's ISO image!
+This script automatically creates a file of random size between 500MB and 1500MB defined as `UpFileSize`, or you could set a specific size or download a relatively large file yourself, like Ubuntu's ISO image!
 
 Copy the file `script.sh` to the script directory and replace the following variables with correct information about your server and paths:
 ```sh
 UpFileName=upfile.iso
-UpFileSize=1600M
+UpFileSize=$(( ( RANDOM % 1000 ) +500 ))M
 LogDir=/opt/script/logs
 LogFile=script-$(date +%s).log
 
