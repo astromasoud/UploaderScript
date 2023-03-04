@@ -13,4 +13,6 @@ UpDir=/opt/script/mainservername
 
 BwLimit=2000
 
+ssh -p $SshPort $SshUser@$ServerAddr "rm -f $UpDir/$UpFileName"
+
 rsync -v -e "ssh -p $SshPort" --progress --bwlimit=$BwLimit $ScriptDir/$UpFileName $SshUser@$ServerAddr:$UpDir >> $LogDir/$LogFile
