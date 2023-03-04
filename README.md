@@ -139,6 +139,6 @@ Also if your destination server is low on storage, you could easily add a Cronjo
 ```sh
 */10 * * * * rm -f /opt/script/*/ubuntu2204x64.iso
 ```
-This will delete any file called `ubuntu2204x64.iso` inside any folder under the directory `/opt/script/` ever 10 minutes!
+This will delete any file called `ubuntu2204x64.iso` inside any folder under the directory `/opt/script/` every 10 minutes!
 
 ### **Okay, that's it! Good Luck with your endevours! :))**
