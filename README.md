@@ -129,3 +129,16 @@ This is for the sake of debugging and log checks; you could run a `logrotate` se
 ```sh
 # >> $LogDir/$LogFile
 ```
+
+#### **Stuff To Do On The Destination Server**
+
+Something else that you obviously should do on the destination server is to create the `UpDir` on it and give write permission to the user that SSHes into that server!
+
+Also if your destination server is low on storage, you could easily add a Cronjob to look for the uploaded file every few minutes and if it exists, delete it:
+
+```sh
+*/10 * * * * rm -f /opt/script/*/ubuntu2204x64.iso
+```
+This will delete any file called `ubuntu2204x64.iso` inside any folder under the directory `/opt/script/` ever 10 minutes!
+
+### **Okay, that's it! Good Luck with your endevours! :))**
