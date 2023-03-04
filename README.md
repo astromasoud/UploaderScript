@@ -56,7 +56,7 @@ This script automatically creates a file of the defined size `UpFileSize`, or yo
 Copy the file `script.sh` to the script directory and replace the following variables with correct information about your server and paths:
 ```sh
 UpFileName=upfile.iso
-UpFileSize=1800M
+UpFileSize=1600M
 LogDir=/opt/script/logs
 LogFile=script-$(date +%s).log
 
