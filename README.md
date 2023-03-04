@@ -51,16 +51,16 @@ Then go back to the amin server, create a directory somewhere for the script fil
 /opt/script/logs/
 ```
 
-Download a relatively large file to your script directory and give it a short name. I'm using the `Ubuntu Server x64` ISO image for these examples which is currently 1.8GB and named it `ubuntu2204x64.iso`!
+This script automatically creates a file of the defined size `UpFileSize`, or you could download a relatively large file yourself, like Ubuntu's ISO image!
 
-Then copy the file `script.sh` to the script directory and replace the following variables with correct information about your server and paths:
+Copy the file `script.sh` to the script directory and replace the following variables with correct information about your server and paths:
 ```sh
-UpFileName=ubuntu2204x64.iso
-ScriptDir=/opt/script
+UpFileName=upfile.iso
+UpFileSize=1800M
 LogDir=/opt/script/logs
 LogFile=script-$(date +%s).log
 
-SshPort=22
+SshPort=2222
 SshUser=username
 ServerAddr=myserver
 
@@ -139,8 +139,8 @@ Something else that you obviously should do on the destination server is to crea
 Also if your destination server is low on storage, you could easily add a Cronjob to look for the uploaded file every few minutes and if it exists, delete it:
 
 ```sh
-*/10 * * * * rm -f /opt/script/*/ubuntu2204x64.iso
+*/10 * * * * rm -f /opt/script/*/upfile.iso
 ```
-This will delete any file called `ubuntu2204x64.iso` inside any folder under the directory `/opt/script/` every 10 minutes!
+This will delete any file called `upfile.iso` inside any folder under the directory `/opt/script/` every 10 minutes!
 
 ### **Okay, that's it! Good Luck with your endevours! :))**
