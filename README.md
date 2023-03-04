@@ -1,6 +1,6 @@
 # **Automated Upload Timer**
 
-This repo consists of a simple `rsync` script and a `systemd` service and timer component to upload a file to a destination server on a timely interval between them.
+This repo consists of a simple `rsync` script and a `systemd` service and timer component to frequently upload a file to a destination server at a timely interval.
 
 The purpose is to increase the upload stats on a server or a network connection where the ISP or Datacenter requires the uploaded data be much more than the downloaded data. That might sound weird to some people but there are such providers in some "free" countries on this planet who would limit your bandwidth if your download is more than your upload because they wouldn't want people to run VPN servers on their infrustructure!
 
