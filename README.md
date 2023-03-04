@@ -22,7 +22,7 @@ First of all I suggest for the ease of your job, add the IP address of the desti
 
 Second thing that should be done is to authorize the Main Server to SSH into the Destination Server using an SSH Public Key.
 
-One the Main Server run:
+On the Main Server run:
 ```sh
 ssh-keygen
 ```
@@ -68,13 +68,13 @@ UpDir=/opt/script/mainservername
 
 BwLimit=2000
 ```
-Notice that the values starting with `Ssh` should be filled with the connection information of the Destination Server.
+Notice that the values starting with `Ssh` should be filled with the connection information for the Destination Server.
 
 `BwLimit` is the upload rate in *Kilo Bytes Per Second*. It will limit the upload rate so that `rsync` wouldn't employ the whole upload bandwidth of the server which might cause other issues such as network inaccessibilty during the upload or cause your service to get suspended due to using too much resources at a time!
 
 
 ### **Service and Timer Setup**
-Okay, now we're setting up the `systemd` Service and Timer to run the script with a time interwall in between, here 26 minutes after the previous run was finished.
+Okay, now we're setting up the `systemd` Service and Timer to run the script with a time interval in between, here 26 minutes after the previous run was finished.
 
 First create 2 file called `upscript.service` and `upscript.time` in the `systemd` directory:
 ```sh
@@ -86,31 +86,30 @@ Then edit the Service file and paste the contents of the `upscript.service` file
 ```sh
 sudo vim /etc/systemd/system/upscript.service
 ```
-Note that you should set the following variables in that file to fit your directories and username:
-```conf
-Environment="ScriptPath=/opt/script/script.sh"
-Environment="LogsPath=/opt/script/logs"
-```
+Note that you should set the following variables in that file to fit your directories, paths, and username:
 ```conf
 User=username
 Group=usergroup
+ExecStart=bash /opt/script/script.sh
+StandardOutput=file:/opt/script/logs/script.log
+StandardError=file:/opt/script/logs/script-error.log
 ```
 
 Then edit the Timer file and paste the contents of the `upstript.timer` file into it:
 ```sh
-sudo vim /etc/systemd/system/upscript.stime
+sudo vim /etc/systemd/system/upscript.timer
 ```
-Note that you could change these variable as you desire:
+Note that you can change these variable as you desire:
 ```conf
 OnUnitInactiveSec=26m
 OnBootSec=33m
 ```
-`OnUnitInactiveSec` here means that 26 minutes after the past upload was finished, a new one would be started. This prevent overlaps (compared to OnUnitActive).
+`OnUnitInactiveSec` here means that 26 minutes after the past upload was finished, a new one would be started. This prevents overlaps (compared to OnUnitActive).
 
 At the end, run the following commands:
 ```sh
 sudo systemctl daemon-reload
-sudo systemctl enable upscript
+sudo systemctl enable upscript.timer
 ```
 
 ### **Final Tests and Notes**
@@ -119,12 +118,15 @@ You should test the SSH connection to your destination server and accept the SSH
 ssh -p port username@myserver
 ```
 
-You could trigger the run manually via running
+You could trigger the run manually via running either of these:
 ```sh
 sudo systemctl start upscript.service
+bash /opt/script/script.sh
+# And Tail the logfile to see the progress:
+# tail -f /opt/script/logs/script-newesttime.log
 ```
 
-Every run of the script leaves a log file inside the `LogDir` named using the Unix timestamp of the its time of run.
+Every run of the script leaves a log file inside the `LogDir` named using the Unix timestamp of the time of run.
 This is for the sake of debugging and log checks; you could run a `logrotate` service or manually delete them as they'd increase in number over time! Or you could disable it by commenting out this part inside `script.sh`:
 ```sh
 # >> $LogDir/$LogFile
