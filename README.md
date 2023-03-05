@@ -108,6 +108,7 @@ At the end, run the following commands:
 ```sh
 sudo systemctl daemon-reload
 sudo systemctl enable upscript.timer
+sudo systemctl start upscript.timer
 ```
 
 ### **Final Tests and Notes**
