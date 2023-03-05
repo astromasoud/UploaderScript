@@ -55,8 +55,6 @@ This script automatically creates a file of random size between 500MB and 1500MB
 
 Copy the file `script.sh` to the script directory and replace the following variables with correct information about your server and paths:
 ```sh
-UpFileName=upfile.iso
-UpFileSize=$(( ( RANDOM % 1000 ) +500 ))M
 LogDir=/opt/script/logs
 LogFile=script-$(date +%s).log
 
