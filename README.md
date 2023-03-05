@@ -1,8 +1,8 @@
-# **Automated Upload Timer**
+# **Automated Systemd Upload Timer**
 
-This repo consists of a simple `rsync` script and a `systemd` service and timer component to frequently upload a file to a destination server at a timely interval.
+This repo consists of a simple `rsync` script and a `systemd` service and timer component to frequently upload a randomly-sized file to a destination server at a timely interval.
 
-The purpose is to increase the upload stats on a server or a network connection where the ISP or Datacenter requires the uploaded data be much more than the downloaded data. That might sound weird to some people but there are such providers in some "free" countries on this planet who would limit your bandwidth if your download is more than your upload because they wouldn't want people to run VPN servers on their infrustructure!
+The purpose is to increase the upload stats on a server or a network connection where the ISP or Datacenter requires the uploaded traffic to be much more than the downloaded data. That might sound weird to some people but there are such providers in some "free" countries on this planet who would limit your bandwidth if your download is more than your upload because they wouldn't want people to run VPN servers on their infrustructure!
 
 I'm gonna write these instructions for the people who might not have much experience with Linux machines, so some parts might sound too obvious to the more advanced users, I ask your majesty's forgiveness beforehand!
 
@@ -43,7 +43,7 @@ Paste the contents that you copied in the previous step into a new line.
 
 ### **Script Setup**
 
-Then go back to the amin server, create a directory somewhere for the script file and the logs. I use the following paths for the examples:
+Then go back to the main server, create a directory somewhere for the script file and the logs. I use the following paths for the examples:
 ```sh
 #Script Directory
 /opt/upscript/
