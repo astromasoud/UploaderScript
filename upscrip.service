@@ -7,9 +7,9 @@ Environment="PATH=/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
 Type=oneshot
 User=username
 Group=usergroup
-ExecStart=bash /opt/script/script.sh
-StandardOutput=file:/opt/script/logs/script.log
-StandardError=file:/opt/script/logs/script-error.log
+ExecStart=bash /opt/upscript/script.sh
+StandardOutput=file:/opt/upscript/logs/upscript.log
+StandardError=file:/opt/upscript/logs/upscript-error.log
 
 [Install]
 WantedBy=multi-user.target

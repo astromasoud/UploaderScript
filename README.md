@@ -46,23 +46,23 @@ Paste the contents that you copied in the previous step into a new line.
 Then go back to the amin server, create a directory somewhere for the script file and the logs. I use the following paths for the examples:
 ```sh
 #Script Directory
-/opt/script/
+/opt/upscript/
 #Logs Directory
-/opt/script/logs/
+/opt/upscript/logs/
 ```
 
 This script automatically creates a file of random size between 500MB and 1500MB defined as `UpFileSize`, or you could set a specific size or download a relatively large file yourself, like Ubuntu's ISO image!
 
 Copy the file `script.sh` to the script directory and replace the following variables with correct information about your server and paths:
 ```sh
-LogDir=/opt/script/logs
-LogFile=script-$(date +%s).log
+LogDir=/opt/upscript/logs
+LogFile=upscript-$(date +%s).log
 
 SshPort=2222
 SshUser=username
 ServerAddr=myserver
 
-UpDir=/opt/script/mainservername
+UpDir=/opt/upscript/mainservername
 
 BwLimit=2000
 ```
@@ -88,9 +88,9 @@ Note that you should set the following variables in that file to fit your direct
 ```conf
 User=username
 Group=usergroup
-ExecStart=bash /opt/script/script.sh
-StandardOutput=file:/opt/script/logs/script.log
-StandardError=file:/opt/script/logs/script-error.log
+ExecStart=bash /opt/upscript/script.sh
+StandardOutput=file:/opt/upscript/logs/upscript.log
+StandardError=file:/opt/upscript/logs/upscript-error.log
 ```
 
 Then edit the Timer file and paste the contents of the `upstript.timer` file into it:
@@ -119,9 +119,9 @@ ssh -p port username@myserver
 You could trigger the run manually via running either of these:
 ```sh
 sudo systemctl start upscript.service
-bash /opt/script/script.sh
+bash /opt/upscript/script.sh
 # And Tail the logfile to see the progress:
-# tail -f /opt/script/logs/script-newesttime.log
+# tail -f /opt/upscript/logs/upscript-newesttime.log
 ```
 
 Every run of the script leaves a log file inside the `LogDir` named using the Unix timestamp of the time of run.
@@ -137,8 +137,8 @@ Something else that you obviously should do on the destination server is to crea
 Also if your destination server is low on storage, you could easily add a Cronjob to look for the uploaded file every few minutes and if it exists, delete it:
 
 ```sh
-*/10 * * * * rm -f /opt/script/*/upfile.iso
+*/10 * * * * rm -f /opt/upscript/*/upfile.iso
 ```
-This will delete any file called `upfile.iso` inside any folder under the directory `/opt/script/` every 10 minutes!
+This will delete any file called `upfile.iso` inside any folder under the directory `/opt/upscript/` every 10 minutes!
 
 ### **Okay, that's it! Good Luck with your endevours! :))**

@@ -4,14 +4,14 @@ UpFileName=upfile.iso
 UpFileSize=$(( ( RANDOM % 1000 ) +500 ))M
 
 #Variables that need to be defined based on your environment and needs
-LogDir=/opt/script/logs
-LogFile=script-$(date +%s).log
+LogDir=/opt/upscript/logs
+LogFile=upscript-$(date +%s).log
 
 SshPort=2222
 SshUser=username
 ServerAddr=myserver
 
-UpDir=/opt/script/mainservername
+UpDir=/opt/upscript/mainservername
 
 BwLimit=2000
 
