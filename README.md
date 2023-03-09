@@ -107,8 +107,8 @@ OnBootSec=33m
 At the end, run the following commands:
 ```sh
 sudo systemctl daemon-reload
-sudo systemctl enable upscript.timer
-sudo systemctl start upscript.timer
+sudo systemctl enable upscript
+sudo systemctl start upscript
 ```
 
 ### **Final Tests and Notes**
