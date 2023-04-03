@@ -13,7 +13,7 @@ ServerAddr=myserver
 
 UpDir=/opt/upscript/mainservername
 
-BwLimit=2000
+BwLimit=$(( ( RANDOM % 2000 ) +700 ))
 
 
 #Create a file of some desired size
