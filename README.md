@@ -131,6 +131,11 @@ This is for the sake of debugging and log checks; you could run a `logrotate` se
 # >> $LogDir/$LogFile
 ```
 
+**Bonus:** I myself have a cronjob that deletes the log files older than 7 days. You could set it up using `crontab -e` like this:
+```sh
+0 0 * * * /usr/bin/find /opt/upscript/logs/ -name "script-1*.log" -type f -mtime +7 -delete
+```
+
 #### **Stuff To Do On The Destination Server**
 
 Something else that you obviously should do on the destination server is to create the `UpDir` on it and give write permission to the user that SSHes into that server!
