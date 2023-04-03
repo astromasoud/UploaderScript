@@ -68,7 +68,7 @@ BwLimit=$(( ( RANDOM % 2000 ) +700 ))
 ```
 Notice that the values starting with `Ssh` should be filled with the connection information for the Destination Server.
 
-`BwLimit` is the upload rate in *Kilo Bytes Per Second*. It will limit the upload rate so that `rsync` wouldn't employ the whole upload bandwidth of the server which might cause other issues such as network inaccessibilty during the upload or cause your service to get suspended due to using too much resources at a time! I also made it a randomized number like the uploded file's size. In the above example it chooses a *random* number between 700KBps and 2700KBps and applies it as the amount of bandwidth that would be employed during the upload of the file.
+`BwLimit` is the upload rate in *Kilo Bytes Per Second*. It will limit the upload rate so that `rsync` wouldn't employ the whole upload bandwidth of the server which might cause other issues such as network inaccessibilty during the upload or cause your service to get suspended due to using too much resources at a time! I also made it a randomized number like the uploded file's size. In the above example it chooses a *random* number between 700 and 2700 and applies it as the amount of bandwidth (in KBps) that would be employed during the upload of the file.
 
 
 ### **Service and Timer Setup**
