@@ -86,11 +86,12 @@ Then edit the Service file and paste the contents of the `upscript.service` file
 ```sh
 sudo vim /etc/systemd/system/upscript.service
 ```
-Note that you should set the following variables in that file to fit your directories, paths, and username:
+Note that you should set the following variables in that file to fit your directories, paths, and username. The value of *TimeoutStartSec* stops the script if the upload speed is too slow and it's defined in seconds.
 ```conf
 User=username
 Group=usergroup
 ExecStart=bash /opt/upscript/script.sh
+TimeoutStartSec=3600
 StandardOutput=file:/opt/upscript/logs/upscript.log
 StandardError=file:/opt/upscript/logs/upscript-error.log
 ```
