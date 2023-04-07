@@ -8,7 +8,7 @@ Type=oneshot
 User=username
 Group=usergroup
 ExecStart=bash /opt/upscript/script.sh
-TimeoutStartSec=2000
+TimeoutStartSec=3600
 StandardOutput=file:/opt/upscript/logs/upscript.log
 StandardError=file:/opt/upscript/logs/upscript-error.log
 
